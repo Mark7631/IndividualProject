@@ -9,7 +9,7 @@ x-uffizzi:
 services:
 
   answer:
-    image: "${ANSWER_IMAGE}"
+    image: answerdev/answer
     environment:
       - AUTO_INSTALL=true
       - DB_TYPE=mysql
@@ -29,8 +29,10 @@ services:
     depends_on:
       mysql:
         condition: service_healthy
+    ports:
+      - "80:80"
     links:
-      - db
+      - mysql
     deploy:
       resources:
         limits:
